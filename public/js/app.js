@@ -1,29 +1,28 @@
-var app = angular.module('bdITAC', ['ngRoute', 'ngAnimate', 'toastr']);
+var app = angular.module('bditac', ['ngRoute', 'ngStorage','toastr']);
 
-app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
-{
-   // remove o # da url
-   //$locationProvider.html5Mode(true);
+app.config(['$routeProvider','$httpProvider',
+function ($routeProvider, $httpProvider) {
 
-   $routeProvider
-
-   // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
-   .when('/', {
-      templateUrl : 'page/one',
-      controller     : 'OneCtrl',
-   })
-   .when('/four', {
-      templateUrl : 'part-views/four.html',
-      controller     : 'FourCtrl',
-   })
-
-   // para a rota '/sobre', carregaremos o template sobre.html e o controller 'SobreCtrl'
-   /*
-   .when('/sobre', {
-      templateUrl : 'app/views/sobre.html',
-      controller  : 'SobreCtrl',
-   })
-   */
-   // caso não seja nenhum desses, redirecione para a rota '/'
-   .otherwise ({ redirectTo: '/' });
+  $routeProvider
+        .when('/index', {
+            templateUrl: 'part-views/login.html',
+            controller: 'LoginController',
+            requireLogin: false
+        })
+        .when('/dash-board', {
+            templateUrl: 'part-views/dash-board.html',
+            controller: 'DashBoardController',
+            requireLogin: true
+        })
+        .when('/crisis', {
+            templateUrl: 'part-views/crisis.html',
+            controller: 'CrisisController',
+            requireLogin: false
+        })
+/*        .when('/situation-room', {
+            templateUrl: 'views/situation-room.html',
+            controller: 'SituationRoomController',
+            requireLogin: true
+        })*/
+        .otherwise ({ redirectTo: '/dash-board' });
 }]);

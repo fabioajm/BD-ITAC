@@ -33,4 +33,24 @@ describe("Teste de Usuarios",function(){
     });
   });
 
+  it("Deve logar usuario",function(done){
+
+    // calling home page api
+    server
+    .post("/rest/users/login")
+    .send({'password': 'teste', 'email': 'adm@gmail.com'})
+    .expect("Content-type",/json/)
+    .expect(200) // THis is HTTP response
+    .end(function(err,res){
+
+
+      // HTTP status should be 200
+      res.status.should.equal(200);
+      res.should.be.json;
+
+
+      done();
+    });
+  });
+
 });

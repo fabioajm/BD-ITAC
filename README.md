@@ -10,9 +10,13 @@ Project with structure single page in AngularJS + NodeJS
 2. npm install
 3. bower install
 3. npm install mocha -g
+4. npm install gulp -g
 
 # Start Project
 1. node app.js
 
 #Run Tests
-1. mocha 
+1. mocha
+
+#Api doc
+1. gulp or gulp apidoc
